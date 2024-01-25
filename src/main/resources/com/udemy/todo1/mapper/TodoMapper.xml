@@ -1,0 +1,27 @@
+<!-- resources/mapper/TodoMapper.xml -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.udemy.todo1.mapper.TodoMapper">
+	
+	<select id="findAll" resultType="com.udemy.todo1.model.Todo">
+	  SELECT * FROM m_todo
+	</select>
+	
+	<select id="findById" resultType="com.udemy.todo1.model.Todo">
+	  SELECT * FROM m_todo WHERE id = ${id}
+	</select>
+		
+	<insert id="addTodo" useGeneratedKeys="true" keyProperty="id" parameterType="com.udemy.todo1.model.Todo">
+	  INSERT INTO m_todo (title, status) VALUES (#{title}, #{status})
+	</insert>
+	
+	<update id="updateTodo" parameterType="com.udemy.todo1.model.Todo">
+	  UPDATE m_todo SET title = #{title}, status = #{status} WHERE id = ${id}
+	</update>
+	
+	  <!-- Todoを削除するクエリ -->
+	<delete id="deleteTodo" parameterType="Long">
+	  DELETE FROM m_todo WHERE id = ${id}
+	</delete>
+
+</mapper>
